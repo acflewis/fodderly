@@ -4,13 +4,15 @@ fodderApp.Views.UserShow = Backbone.View.extend({
     // initialize: function (options) {
     //     this.listenTo(this.model, "all", this.render);
     // },
+    
+   
 	
 	render: function () {
        
         var cu = JSON.parse($("#bootstrapped_current_user").html()).current_user;
         
         if (cu === null) {
-            this.$el.html("Please login or signup to create and view recipe collections");
+            this.$el.html("Please Sign In or Sign Up to create and view recipe collections");
         } else {
             var currentUser     = new fodderApp.Models.User(cu);
             var renderedContent = this.template({

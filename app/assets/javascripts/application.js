@@ -24,3 +24,5 @@
 //= require app_router.js
 //= require fodder_app.js
 //= require application.js
+//= require bootstrap
+

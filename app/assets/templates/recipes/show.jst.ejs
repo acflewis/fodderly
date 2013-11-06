@@ -1,24 +1,37 @@
+<div class="row-fluid" id="recipe_show">
+<div class = "span6" >
+
 <h1><%= recipe.escape("name") %></h1>
 
-<% image_url = recipe.escape("image_url") %>
-<img src="<%= image_url %>" alt="some_text">
 
-<p>From <%= recipe.escape("source_name") %></p>
-<p>Energy: <%= recipe.escape("energy_value") %> <%= recipe.escape("energy_unit") %></p>
+<h4>From <%= recipe.escape("source_name") %></h4>
 
-<p>Total preparation time: <%= recipe.escape("total_time_s") %> seconds</p>
 
-<p>Number of servings: <%= recipe.escape("num_servings") %></p>
-
-<p>Ingredients:
+<h5>Ingredients:</h5>
 <ul>
 <% ingredients.forEach(function (ingredient) { %>
 <li><%= ingredient.escape("food")%></li>
 <% }); %>
 </ul>
-</p>
+
 
 <% rec_url = "https://" + recipe.escape("source_url") %>
-<p>
-For method, please visit <a href = <%= rec_url %>>here</a>
-</p>
+<h5>Method:</h5>
+Please visit <a href = <%= rec_url %>>here</a>
+
+
+</div>
+
+<div class = "span6">
+<% image_url = recipe.escape("image_url") %>
+<img src="<%= image_url %>" alt="some_text" width="250px">
+<br>
+<h5>Energy: <%= recipe.escape("energy_value") %> <%= recipe.escape("energy_unit") %></h5>
+
+<h5>Total preparation time: <%= recipe.escape("total_time_s") %> seconds</h5>
+
+<h5>Number of servings: <%= recipe.escape("num_servings") %></h5>
+
+</div>
+
+</div>

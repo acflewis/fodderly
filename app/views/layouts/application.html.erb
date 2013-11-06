@@ -5,23 +5,62 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">Fodderly</a>
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href=<%= root_url %>>Home</a></li>
+                <li class'"active"'><a href=<%= about_url %>>About</a></li>
+                <!-- <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li> -->
+              </ul>
+              <% if !current_user.nil? %>
+              <%= link_to "Sign Out", 
+                        session_url, 
+                        class: "btn pull-right",
+                        method: :delete %>
+              <p class="navbar-text pull-right">Signed in as <%= current_user.username %><span class="icon-bar"></span></p>
+             
+              <% else%>
+              
+              <%= link_to "Sign Up", 
+                        new_user_url, 
+                        class: "btn btn-success pull-right",
+                        method: :get %>
+              <span class="icon-bar pull-right"></span>
+              <form class="navbar-form pull-right" action="<%= session_url %>" method="post">
+                <input class="span2" type="text" placeholder="Username" name="user[username]">
+                <input class="span2" type="password" placeholder="Password" name='user[password]'>
+                <button type="submit" class="btn">Sign in</button>
+                <% end %>
+              </form>
 
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
 
-<% if !current_user.nil? %>
-<div>
-Logged in as: <%= current_user.username %>
-<%= button_to "Logout", session_url, :method => :delete %>
-</div>
-  
-<% else%>
-<div>
-  <%= button_to "Sign In", new_session_url, :method => :get %>
-  <%= button_to "Sign Up", new_user_url, :method => :get %>
-</div>
-
-<% end %>
 
 
 
@@ -29,3 +68,5 @@ Logged in as: <%= current_user.username %>
 
 </body>
 </html>
+
+

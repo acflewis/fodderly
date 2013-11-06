@@ -1,8 +1,13 @@
 <% action = (user.persisted? ? user_url(user) : users_url) %>
 <% method = (user.persisted? ? "put" : "post") %>
 <% message = (user.persisted? ? "Update user" : "Create user") %>
+<% title = (user.persisted? ? "Please sign in" : "Create account") %>
 
-<form action="<%= action %>" method="post">
+<div class="container">
+
+
+<form class="form-signin" action="<%= action %>" method="post">
+    <h2 class="form-signin-heading"><%= title %></h2>
   <input
      name="_method"
      type="hidden"
@@ -16,15 +21,20 @@
   <input
      id="user_username"
      name="user[username]"
-     type="text">
+     type="text"
+     class="input-block-level"
+     placeholder="Username">
   <br>
 
   <label for="user_password">Password</label>
   <input
      id="user_password"
      name="user[password]"
-     type="password">
+     type="password"
+     class="input-block-level"
+     placeholder="Password">
   <br>
 
   <input type="submit" value="<%= message %>">
 </form>
+</div>

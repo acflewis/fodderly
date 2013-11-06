@@ -9,7 +9,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
             model: fodderApp.user
         });
         userView.render();
-        $('.sidebar').html(userView.$el);
+        $('#sidebar').html(userView.$el);
     },
     
 	showRecipesIndex: function () {
@@ -17,7 +17,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
 			collection: fodderApp.recipes
 		});
 		indexView.render();
-		$('.content').html(indexView.$el);
+		$('#content').html(indexView.$el);
 	},
 	
 	showRecipePage: function (id) {
@@ -26,7 +26,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
 			model: recipe
 		});
 		pageView.render();
-		$('.content').html(pageView.$el);
+		$('#content').html(pageView.$el);
 	}// ,
 //     
 //     showEditForm: function (id) {

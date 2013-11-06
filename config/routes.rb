@@ -7,6 +7,8 @@ FodderApp::Application.routes.draw do
     resources :ingredients, only: [:index]
   end
 
+  get '/about', to: 'static_pages#about'
+  
 
   root :to => "static_pages#index"
 end
