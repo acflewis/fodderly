@@ -5,11 +5,11 @@ fodderApp.AppRouter = Backbone.Router.extend({
 	},
 	
     setUpSidebar: function () {
-        // var indexView = new JournalApp.Views.PostsIndex({
-      //       collection: JournalApp.posts
-      //   });
-      //   indexView.render();
-        $('.sidebar').html("Some info about user");
+        var userView = new fodderApp.Views.UserShow({
+            model: fodderApp.user
+        });
+        userView.render();
+        $('.sidebar').html(userView.$el);
     },
     
 	showRecipesIndex: function () {

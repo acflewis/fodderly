@@ -1,2 +1,23 @@
 <h1><%= recipe.escape("name") %></h1>
-<h3><%= recipe.escape("energy_value") %></h3>
+
+<% image_url = recipe.escape("image_url") %>
+<img src="<%= image_url %>" alt="some_text">
+
+<p>From <%= recipe.escape("source_name") %></p>
+<p>Energy: <%= recipe.escape("energy_value") %> <%= recipe.escape("energy_unit") %></p>
+
+<p>Total preparation time: <%= recipe.escape("total_time_s") %> seconds</p>
+
+<p>Number of servings: <%= recipe.escape("num_servings") %></p>
+
+<p>Ingredients:
+<ul>
+<% ingredients.forEach(function (ingredient) { %>
+<li><%= ingredient.escape("food")%></li>
+<% }); %>
+</ul>
+</p>
+
+<p>
+For method, please visit <a href = <%= recipe.escape("source_url") %>>here</a>
+</p>

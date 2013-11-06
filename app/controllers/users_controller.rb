@@ -7,7 +7,8 @@ class UsersController < ApplicationController
 
     if @user.save
       self.current_user = @user
-      redirect_to user_url(@user)
+      redirect_to root_url
+      # redirect_to user_url(@user)
     else
       render :json => @user.errors.full_messages
     end
@@ -15,6 +16,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render :layout => "sign"
   end
 
   def show

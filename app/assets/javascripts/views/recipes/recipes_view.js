@@ -6,8 +6,12 @@ fodderApp.Views.RecipeShow = Backbone.View.extend({
 	},
 	
 	render: function () {
+        
+        recipe = this.model;
+        
 		var renderedContent = this.template({
-			recipe: this.model
+			recipe: recipe, 
+            ingredients: recipe.get("ingredients")
 		});
 		
 		this.$el.html(renderedContent);

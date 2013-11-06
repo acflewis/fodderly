@@ -1,11 +1,11 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
-    render :json => @recipes
+    
+    render :json => Recipe.includes(:ingredients).all, :include => [:ingredients]
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
-    render :json => @recipe
+    recipe = Recipe.find(params[:id])
+    render :json => recipe, :include => [:ingredients]
   end
 end
