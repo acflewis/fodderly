@@ -21,4 +21,6 @@
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
-//= require_tree .
+//= require app_router.js
+//= require fodder_app.js
+//= require application.js
