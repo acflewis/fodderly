@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106030118) do
+ActiveRecord::Schema.define(:version => 20131106232127) do
+
+  create_table "collection_recipes", :force => true do |t|
+    t.integer  "recipe_id"
+    t.integer  "collection_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "collection_recipes", ["collection_id"], :name => "index_collection_recipes_on_collection_id"
+  add_index "collection_recipes", ["recipe_id"], :name => "index_collection_recipes_on_recipe_id"
+
+  create_table "collections", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "name",                          :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.boolean  "shop",       :default => false
+  end
+
+  add_index "collections", ["user_id"], :name => "index_collections_on_user_id"
 
   create_table "ingredients", :force => true do |t|
     t.integer  "recipe_id",  :null => false

@@ -1,7 +1,9 @@
-Welcome to Fodderly!
+Fodderly read me
 
-To do list:
--- add backbone elements
--- add user collections
--- add user notes
-
+Known bugs:
+--Uncaught SyntaxError: Unexpected token u on "Sign Up" (doesn't effect functionality)
+--User credentials wrong currently yields JSON
+--"About" on navbar doesn't light up when on About page
+-- intiialize router, so don't have to look up #content
+-- currently have an alert when fails to get collection
+ 

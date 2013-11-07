@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   validates :password, :length => { :minimum => 6, :allow_nil => true }
   validates :session_token, :presence => true
   validates :username, :presence => true
+  
+  has_many :collections
 
   after_initialize :ensure_session_token
 

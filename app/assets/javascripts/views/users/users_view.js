@@ -2,21 +2,25 @@ fodderApp.Views.UserShow = Backbone.View.extend({
 	template: JST["users/show"],
 	
     // initialize: function (options) {
-    //     this.listenTo(this.model, "all", this.render);
-    // },
-    
-   
+ //        this.listenTo(this.model, "all", this.render);
+ //    },
+ //    
+ //   
 	
 	render: function () {
        
         var cu = JSON.parse($("#bootstrapped_current_user").html()).current_user;
+        var cu_collections = JSON.parse($("#bootstrapped_current_user_collections").html()).current_user_collections;
+        
         
         if (cu === null) {
             this.$el.html("Please Sign In or Sign Up to create and view recipe collections");
         } else {
             var currentUser     = new fodderApp.Models.User(cu);
+           var currentUserCollections     = new fodderApp.Collections.UserCollections(cu_collections);
             var renderedContent = this.template({
-                user: currentUser
+                user: currentUser,
+                collections: currentUserCollections
             });
 
             this.$el.html(renderedContent);
@@ -27,4 +31,4 @@ fodderApp.Views.UserShow = Backbone.View.extend({
 	}
 	
 	
-})
+});

@@ -1,7 +1,8 @@
 fodderApp.AppRouter = Backbone.Router.extend({
 	routes: {
 		"" : "showRecipesIndex",
-		"recipes/:id" : "showRecipePage"
+		"recipes/:id" : "showRecipePage",
+        "users/:id/collections/:id" : "showCollection"
 	},
 	
     setUpSidebar: function () {
@@ -27,7 +28,26 @@ fodderApp.AppRouter = Backbone.Router.extend({
 		});
 		pageView.render();
 		$('#content').html(pageView.$el);
-	}// ,
+	},
+    
+    showCollection: function (user_id, collection_id) {
+        var userCollection = new fodderApp.Models.Collection({id: collection_id});
+        // debugger;
+        userCollection.fetch({
+            success: callback,
+            error: function() {
+              alert("fail")
+            }
+        }); 
+        
+        function callback (uCol, error, options) {
+            var collectionView = new fodderApp.Views.CollectionShow({
+                model: userCollection
+            });
+            collectionView.render();
+            $('#content').html(collectionView.$el);
+        };   
+    }
 //     
 //     showEditForm: function (id) {
 //         var postedForm = new JournalApp.Views.NewPostForm({
