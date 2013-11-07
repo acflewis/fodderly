@@ -9,8 +9,30 @@ body { padding-top: 70px; }
     height: 100px; /* add this */
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 5px;
 //    max-width: 100%;
 }
+
+
+.recipe {
+  min-height: 250px;
+  height: 250px;
+}
+
+ul.thumbnails li.span3 {
+  margin-right : 0px;
+  margin-left: 0px;
+}
+
+.collection {
+  background-color: red;
+}
+
+//ul.thumbnails li.span3:nth-child(4n + 5) {
+//  margin-left : 0px;
+//}
+
+
 
 .form-signin {
         max-width: 300px;

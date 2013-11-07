@@ -2,22 +2,30 @@
 <div class="hero-unit" id="browse_bar">
   <h3><%= title %></h3>
 </div>
-<div class="row-fluid" id="recipe_list">
 
+<div class="container" id="recipe_list">
 
+<% var count = 1 %>
 <ul class="thumbnails">
     <% recipes.forEach(function (recipe) { %>
-        <li class="span3">
-         <a href = "#/recipes/<%= recipe.id %>" class="thumbnail">
+    <% if (count % 4 == 0) { %>
+      <div class="row-fluid">
+    <% }; %>
+       <li class="span3">
+         <a href = "#/recipes/<%= recipe.id %>" class="thumbnail recipe">
          <div class="caption">
-        <h4><%= recipe.escape("name") %></h4>
-        <h5>From <%= recipe.escape("source_name") %></h5>
-        </div>
-       <% image_url = recipe.escape("image_url") %>
-       <img src="<%= image_url %>" alt="">
-       <br>
+         <h4><%= recipe.escape("name") %></h4>
+         <h5>From <%= recipe.escape("source_name") %></h5>
+         </div>
+         <% image_url = recipe.escape("image_url") %>
+         <img class="thumbnail_img" src="<%= image_url %>" alt="">
+         <br>
          </a>
-        </li>
+       </li>
+     <% if (count % 4 == 0) { %>
+       </div>
+     <% } %>
+     <% count++ %>
     <% }); %>
 </ul>
 	

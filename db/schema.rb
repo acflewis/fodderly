@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131106232127) do
+ActiveRecord::Schema.define(:version => 20131107051927) do
 
   create_table "collection_recipes", :force => true do |t|
     t.integer  "recipe_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20131106232127) do
     t.integer  "energy_value"
     t.string   "energy_unit"
     t.integer  "total_time_s"
-    t.integer  "num_servings"
+    t.string   "num_servings"
     t.string   "source_url",   :null => false
     t.string   "source_name"
     t.datetime "created_at",   :null => false

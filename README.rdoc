@@ -6,4 +6,16 @@ Known bugs:
 --"About" on navbar doesn't light up when on About page
 -- intiialize router, so don't have to look up #content
 -- currently have an alert when fails to get collection
- 
+-- currently logs out when create collection
+
+-- need to put a "add to collection" drop down on recipe page
+-- need to add "rename", "delete" to sidebar collections
+-- need to add "delete recipe" from collection view
+
+-- need to initialize new user with "Shop for me collection"
+
+-- need to add notes
+
+-- need Guest account 
+
+-- form authenticity token for backbone views
