@@ -21,7 +21,7 @@
  
 
 <script type="application/json" id="bootstrapped_current_user">
-{ "current_user": <%= current_user.to_json.html_safe %> }
+  { "current_user": <%= current_user.to_json(:include => [:collections]).html_safe %> }
 </script>
 
 <% if !current_user.nil? %>

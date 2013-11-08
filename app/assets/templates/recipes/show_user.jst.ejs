@@ -1,0 +1,65 @@
+<div class="row-fluid" id="recipe_show">
+<div class = "span6" >
+
+<h1><%= recipe.escape("name") %></h1>
+
+
+<h4>From <%= recipe.escape("source_name") %></h4>
+
+
+<h5>Ingredients:</h5>
+<ul>
+<% ingredients.forEach(function (ingredient) { %>
+<li><%= ingredient.escape("food")%></li>
+<% }); %>
+</ul>
+
+
+<% rec_url = recipe.escape("source_url") %>
+<h5>Method:</h5>
+Please visit <a href = <%= rec_url %>>here</a>
+
+
+</div>
+
+<div class = "span6">
+<% image_url = recipe.escape("image_url") %>
+<img src="<%= image_url %>" alt="some_text" width="250px">
+<br>
+<h5>Energy: <%= recipe.escape("energy_value") %> <%= recipe.escape("energy_unit") %></h5>
+
+<h5>Total preparation time: <%= recipe.escape("total_time_s") %> seconds</h5>
+
+<h5>Number of servings: <%= recipe.escape("num_servings") %></h5>
+
+
+
+
+    <% create_collection_recipe_url = "recipes/" + recipe.escape("id") + "/collection_recipes" %>
+    <form class="form" id="add_recipe_form">
+      <select id="collection-selector" name="collection_id">
+      <option value="">-Please select a collection-</option>
+            <% collections.forEach( function (collection) { %>
+                <option value="<%= collection.escape('id')%>" data-id="<%=collection.escape("id") %>"><%= collection.escape('name') %></option>
+            <% }); %>
+        </select>
+      
+   <input
+      name="authenticity_token"
+      type="hidden"
+      <% var csrf_token = JSON.parse($("#bootstrapped_csrf_token").html()).csrf_token %>
+      value="<%= csrf_token %>">
+      
+      <input
+      name="recipe_id"
+      type = "hidden"
+      value = "<%= recipe.get("id") %>">  
+      
+      <button type="submit" class="btn">Add to collection</button>
+    </form>
+<div id="added_info"></div>
+
+
+</div>
+
+</div>

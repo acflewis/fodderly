@@ -9,9 +9,7 @@ class CollectionsController < ApplicationController
     @collection = Collection.new
     @collection.name = params[:collection][:name]
     @collection.user_id = params[:user_id]
-    puts "Hello from create collection, current user is #{current_user}"
-    puts form_authenticity_token
-    # @collection.user_id = current_user.id
+     # @collection.user_id = current_user.id
     if @collection.save!
       redirect_to root_url
     else
@@ -28,7 +26,9 @@ class CollectionsController < ApplicationController
   end
   
   def destroy
-    
+    collection = Collection.find(params[:id])
+    collection.destroy
+    head :ok
   end
   
   def show

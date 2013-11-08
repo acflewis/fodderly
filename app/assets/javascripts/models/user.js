@@ -4,9 +4,12 @@ fodderApp.Models.User = Backbone.Model.extend({
     
     parse: function (serverAttributes, options) {
         var collections = new fodderApp.Collections.UserCollections(serverAttributes.collections);
-      
+        
         serverAttributes.collections = collections;
+        
         return serverAttributes;
     }
+    
+    
 	
 });

@@ -1,34 +1,43 @@
 fodderApp.Views.UserShow = Backbone.View.extend({
 	template: JST["users/show"],
 	
-    // initialize: function (options) {
- //        this.listenTo(this.model, "all", this.render);
- //    },
- //    
- //   
+  initialize: function (options) {  
+    if (fodderApp.currentUser != null) {
+      this.listenTo(fodderApp.currentUser, "all", this.render);
+      this.listenTo(fodderApp.currentUser.get("collections"), "all", this.render);
+    }
+  },
+  
+  events: {
+   "click #delete-button": "collectionDestroy"
+  },
+  
+	collectionDestroy: function (event) {
+    event.preventDefault();
+		var collectionId = $(event.target).attr("data-id");
+    debugger;
+    var userCollection = fodderApp.currentUser.get("collections").get(collectionId);
+    userCollection.fetch({
+      success: function() {
+        userCollection.destroy();
+      },
+      error: function() {
+        alert("fail")
+      }
+    });    
+	},
 	
-	render: function () {
-       
-        var cu = JSON.parse($("#bootstrapped_current_user").html()).current_user;
-       
-        if (cu === null) {
+	render: function () {      
+        if (fodderApp.currentUser === null) {
             this.$el.html("Please Sign In or Sign Up to create and view recipe collections");
         } else {
-          var cu_collections = JSON.parse($("#bootstrapped_current_user_collections").html()).current_user_collections;
-        
-            var currentUser     = new fodderApp.Models.User(cu);
-           var currentUserCollections     = new fodderApp.Collections.UserCollections(cu_collections);
             var renderedContent = this.template({
-                user: currentUser,
-                collections: currentUserCollections
+                user: fodderApp.currentUser ,
+                collections: fodderApp.currentUser.get("collections")
             });
-
             this.$el.html(renderedContent);
         }
-
         return this;
-
 	}
-	
 	
 });

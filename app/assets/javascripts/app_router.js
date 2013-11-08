@@ -7,7 +7,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
 	
   setUpSidebar: function () {
     var userView = new fodderApp.Views.UserShow({
-      model: fodderApp.user
+      model: fodderApp.currentUser
     });
     userView.render();
     $('#sidebar').html(userView.$el);

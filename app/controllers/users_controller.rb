@@ -28,3 +28,8 @@ class UsersController < ApplicationController
     end
   end
 end
+
+  #    format.json do
+#         @user = User.includes(:collections)
+#         render :json => @user, :include => :collections
+#       end

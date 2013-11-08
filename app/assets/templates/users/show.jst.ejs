@@ -3,9 +3,12 @@
  <% collections.forEach( function (collection) { %>
  <% collection_url = "#/users/" + user.escape("id") + "/collections/" + collection.escape("id") %>
  <li class="active">
-   <a href="<%=collection_url%>" class="thumbnail collection">
-  <div class="caption"><h5><%= collection.escape("name") %></h5></div>
+   <a href="<%=collection_url%>" class="thumbnail collection" >
+  <div class="caption"><h4><%= collection.escape("name") %></h4></div>  
+<button class="danger btn-small" id="delete-button"" data-id="<%=collection.escape("id") %>">
+Delete</button>
    </a>
+    
  </li>
  <% }); %>
  <br>

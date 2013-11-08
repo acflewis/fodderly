@@ -4,8 +4,13 @@ window.fodderApp = {
   Views: {},
   Routers: {},
   initialize: function() {
-	
-	fodderApp.recipes = new fodderApp.Collections.Recipes();
+	var cu = JSON.parse($("#bootstrapped_current_user").html()).current_user;
+  if (cu===null) {
+    fodderApp.currentUser = null;
+  }  else {
+	  fodderApp.currentUser = new fodderApp.Models.User(cu, {parse:true});
+  }
+  fodderApp.recipes = new fodderApp.Collections.Recipes();
 	fodderApp.recipes.fetch({
 		success: function () {
 			var appRouter = new fodderApp.AppRouter();
