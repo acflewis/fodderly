@@ -10,14 +10,17 @@ Known bugs:
 
 
 Immediate to dos:
--- need to add "rename", "delete" to sidebar collections
+-- need to add "rename" to sidebar collections
 -- need to add "delete recipe" from collection view
-
+-- make collections drop down only include those it is not already added to
+-- reset window to top - javascript
+-- when delete collection when viewing colleciton, should go to all recipes
 
 
 Next to dos:
+-- drag and drop recipes into collections
 -- fix recipe thumbnails
--- need to add notes
+-- need to add Notes
 -- need Guest account 
 -- user can add recipes
 

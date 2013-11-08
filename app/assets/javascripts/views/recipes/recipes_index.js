@@ -13,7 +13,7 @@ fodderApp.Views.RecipesIndex = Backbone.View.extend({
 	
 	render: function () {
 		var renderedContent = this.template({
-			title: "All recipes",
+			title: "Browse recipes",
 			recipes: this.collection
 		});
 		this.$el.html(renderedContent);

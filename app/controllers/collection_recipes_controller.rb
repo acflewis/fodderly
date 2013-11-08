@@ -6,7 +6,6 @@ class CollectionRecipesController < ApplicationController
     @collection_recipe.collection_id = params[:collection_id]
   
     if @collection_recipe.save!
-      # There has to be a better way to do this -- just want to stay on page!
       render :json => @collection_recipe
     else
       render :json => @collection_recipe.errors.full_messages
@@ -14,7 +13,7 @@ class CollectionRecipesController < ApplicationController
   end
   
   def destroy
-    collection_recipe = CollectionRecipes.find(params[:id])
+    collection_recipe = CollectionRecipe.find_by_collection_id_and_recipe_id(params[:collection_id], params[:recipe_id])
     collection_recipe.destroy
     head :ok
   end

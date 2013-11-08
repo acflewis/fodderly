@@ -15,7 +15,7 @@ fodderApp.Views.UserShow = Backbone.View.extend({
 	collectionDestroy: function (event) {
     event.preventDefault();
 		var collectionId = $(event.target).attr("data-id");
-    debugger;
+
     var userCollection = fodderApp.currentUser.get("collections").get(collectionId);
     userCollection.fetch({
       success: function() {

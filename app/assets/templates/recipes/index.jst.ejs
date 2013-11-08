@@ -19,6 +19,12 @@
          </div>
          <% image_url = recipe.escape("image_url") %>
          <img class="thumbnail_img" src="<%= image_url %>" alt="">
+         
+         <% if (title != "Browse recipes") { %>
+        <button class="danger btn-small" id="recipe-delete-button" data-id="<%=recipe.escape("id")%>">
+        Delete</button>
+         <% }; %>
+         
          <br>
          </a>
        </li>

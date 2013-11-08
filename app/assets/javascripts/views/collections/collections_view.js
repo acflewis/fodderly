@@ -3,16 +3,41 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 	
 	initialize: function (options) {
 		this.listenTo(this.model, "all", this.render);
+    this.listenTo(this.model.collection_recipes(), "all", this.render);
+    
 	},
+  
+  events: {
+   "click #recipe-delete-button": "collectionRecipeDestroy"
+  },
+  
+	collectionRecipeDestroy: function (event) {
+    event.preventDefault();
+    var userCollection = this.model;
+		var recipeId = $(event.currentTarget).attr("data-id");
+
+    // userCollection = this.model;
+    // var recipesJSON = userCollection.get("recipes") 
+    // var recipes = new fodderApp.Collections.Recipes(recipesJSON);
+    // recipes.get(recipeId)
+    
+    $.ajax ({
+      url: "/users/" + userCollection.get("user_id") + "/collections/" + userCollection.get("id") + "/recipes/" + recipeId + "/collection_recipe",
+      type: "DELETE",
+      success: function () {
+         userCollection.collection_recipes().remove(recipeId)
+      }
+    })  
+	},
+  
 	
 	render: function () {
-        userCollection = this.model;
-        var recipesJSON = userCollection.get("recipes") 
-        var recipes = new fodderApp.Collections.Recipes(recipesJSON);
+    userCollection = this.model;
+    var recipes = userCollection.collection_recipes();
         
 		var renderedContent = this.template({
-            title: userCollection.get("name"),
-			recipes: recipes
+       title: userCollection.get("name"),
+			 recipes: recipes
 		});
 		
 		this.$el.html(renderedContent);
