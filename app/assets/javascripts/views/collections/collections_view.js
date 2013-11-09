@@ -8,7 +8,7 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 	},
   
   events: {
-   "click #recipe-delete-button": "collectionRecipeDestroy"
+   "click #recipe-delete-button": "collectionRecipeDestroy",
   },
   
 	collectionRecipeDestroy: function (event) {
@@ -29,15 +29,16 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
       }
     })  
 	},
-  
+ 
 	
 	render: function () {
     userCollection = this.model;
     var recipes = userCollection.collection_recipes();
         
 		var renderedContent = this.template({
+       version: "collection",
        title: userCollection.get("name"),
-			 recipes: recipes
+			 recipes: this.collection
 		});
 		
 		this.$el.html(renderedContent);

@@ -2,7 +2,8 @@ fodderApp.AppRouter = Backbone.Router.extend({
   routes: {
     "" : "showRecipesIndex",
     "recipes/:id" : "showRecipePage",
-    "users/:id/collections/:id" : "showCollection"
+    "users/:id/collections/:id" : "showCollection",
+    "selection/:option" : "showRecipesIndex"
   },
 	
   setUpSidebar: function () {
@@ -13,13 +14,29 @@ fodderApp.AppRouter = Backbone.Router.extend({
     $('#sidebar').html(userView.$el);
   },
     
-  showRecipesIndex: function () {
+  showRecipesIndex: function (option) {
+    var version = "browse";
+    
+    if (option=="fast") {
+      var recipes = new fodderApp.Collections.Recipes(fodderApp.recipes.filter(function(recipe) { return recipe.get("total_time_s") < 1800 } ));
+      var title = "Fast"
+    } else if (option=="slow") {
+      var recipes = new fodderApp.Collections.Recipes(fodderApp.recipes.filter(function(recipe) { return recipe.get("total_time_s") > 1800 } ));
+      var title = "Slow"
+    } else if (option==undefined) {
+      var recipes = fodderApp.recipes;
+      var title = "All";
+    }
+    
     var indexView = new fodderApp.Views.RecipesIndex({
-      collection: fodderApp.recipes
+      collection: recipes,
+      title: title,
+      version: version
     });
-    indexView.render();
+    
     this._swapView(indexView);
   },
+  
 	
   showRecipePage: function (id) {
     var recipe = fodderApp.recipes.get(id)
@@ -33,7 +50,6 @@ fodderApp.AppRouter = Backbone.Router.extend({
   showCollection: function (user_id, collection_id) {
     var that = this;
     var userCollection = new fodderApp.Models.Collection({id: collection_id});
-    // debugger;
     userCollection.fetch({
       success: callback,
       error: function() {
@@ -43,9 +59,10 @@ fodderApp.AppRouter = Backbone.Router.extend({
         
     function callback (uCol, error, options) {
       var collectionView = new fodderApp.Views.CollectionShow({
-        model: userCollection
+        model: userCollection,
+        collection: userCollection.collection_recipes()
       });
-      collectionView.render();
+      collectionView.render("collection", userCollection.get("name"));
       that._swapView(collectionView);
     };   
   },

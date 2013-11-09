@@ -1,23 +1,21 @@
 fodderApp.Views.RecipesIndex = Backbone.View.extend({
-	template: JST['recipes/index'],
 	
-	// events: {
-//         "click .delete-button": "postDestroy"
-//     },
-//     
-//     initialize: function (options) {
-//         this.listenTo(this.collection, "add remove reset change:title", this.render);
-//     },
-	
-
+  template: JST['recipes/index'],
+  
+  
+  initialize: function (options) {
+    this.title = options.title;
+    this.version = options.version; 
+  },
 	
 	render: function () {
 		var renderedContent = this.template({
-			title: "Browse recipes",
+			version: this.version,
+      title: this.title,
 			recipes: this.collection
 		});
 		this.$el.html(renderedContent);
 		return this;
 	}
-	
+  
 })

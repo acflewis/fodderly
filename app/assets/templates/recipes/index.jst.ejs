@@ -1,6 +1,12 @@
 
 <div class="hero-unit" id="browse_bar">
   <h3><%= title %></h3>
+  <h4>Browse: </h4>
+  <a class="btn" href="/" id='browse-all'>All</a>
+  <div class="btn-group">
+    <a class="btn" href="#/selection/fast" id='browse-fast'>Fast</a>
+    <a class="btn" href="#/selection/slow" id='browse-slow'>Slow</a>
+  </div>
 </div>
 
 <div class="container" id="recipe_list">
@@ -20,7 +26,7 @@
          <% image_url = recipe.escape("image_url") %>
          <img class="thumbnail_img" src="<%= image_url %>" alt="">
          
-         <% if (title != "Browse recipes") { %>
+         <% if (version == "collection") { %>
         <button class="danger btn-small" id="recipe-delete-button" data-id="<%=recipe.escape("id")%>">
         Delete</button>
          <% }; %>
