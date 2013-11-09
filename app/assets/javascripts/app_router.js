@@ -13,19 +13,30 @@ fodderApp.AppRouter = Backbone.Router.extend({
     userView.render();
     $('#sidebar').html(userView.$el);
   },
+  
+  // setUpBrowsebar: function () {
+  //   var userView = new fodderApp.Views.UsersBrowse({
+  //     model: fodderApp.currentUser
+  //   });
+  //   userView.render();
+  //   $('#browsebar').html(userView.$el);
+  // },
     
   showRecipesIndex: function (option) {
     var version = "browse";
     
     if (option=="fast") {
       var recipes = new fodderApp.Collections.Recipes(fodderApp.recipes.filter(function(recipe) { return recipe.get("total_time_s") < 1800 } ));
-      var title = "Fast"
+      var title = "Fast recipes"
     } else if (option=="slow") {
       var recipes = new fodderApp.Collections.Recipes(fodderApp.recipes.filter(function(recipe) { return recipe.get("total_time_s") > 1800 } ));
-      var title = "Slow"
+      var title = "Slow recipes"
+    } else if (option=="all") {
+      var recipes = fodderApp.recipes;
+      var title = "All recipes";
     } else if (option==undefined) {
       var recipes = fodderApp.recipes;
-      var title = "All";
+      var title = "All recipes";
     }
     
     var indexView = new fodderApp.Views.RecipesIndex({

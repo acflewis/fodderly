@@ -14,7 +14,7 @@ window.fodderApp = {
 	fodderApp.recipes.fetch({
 		success: function () {
 			var appRouter = new fodderApp.AppRouter();
-            appRouter.setUpSidebar();
+      appRouter.setUpSidebar();
 			Backbone.history.start();
 		}
 	});		

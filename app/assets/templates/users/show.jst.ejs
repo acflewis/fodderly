@@ -1,4 +1,14 @@
 <ul class="nav nav-list">
+<li class="nav-header"><h4>Browse</h4></li>
+
+  <a class="btn" href="#/selection/all" id='browse-all'>All</a>
+    <a class="btn" href="#/selection/fast" id='browse-fast'>Fast</a>
+    <a class="btn" href="#/selection/slow" id='browse-slow'>Slow</a>
+
+<% if (fodderApp.currentUser == null) { %>
+ <h6>Please Sign In or Sign Up to create and view your own recipe collections</h6>
+<% } else { %>
+
     <li class="nav-header"><h4><%= user.escape("username") %>'s collections</h4></li>
  <% collections.forEach( function (collection) { %>
  <% collection_url = "#/users/" + user.escape("id") + "/collections/" + collection.escape("id") %>
@@ -24,7 +34,11 @@ Delete</button>
       <button type="submit" class="btn">Create collection</button>
     </form>
     </li>
+    
+    <% } %>
 </ul>
+
+
 
 
 
