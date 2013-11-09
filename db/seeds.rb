@@ -63,7 +63,11 @@ require 'json'
 
 @recipes.each do |recipe_string|
 
-  recipe_json = File.read("/Yummly_recipes/#{recipe_string}.json")
+  AppRoot = File.expand_path(File.dirname(__FILE__))
+
+  filename = (File.join(AppRoot, "Yummly_recipes/#{recipe_string}.json"))
+
+  recipe_json = File.read(filename)
 
   recipe_json = recipe_json.gsub("=>", ":")
   recipe_json = recipe_json.gsub(":nil", ":\"\"")
