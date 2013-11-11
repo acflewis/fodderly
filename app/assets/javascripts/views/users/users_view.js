@@ -59,7 +59,7 @@ fodderApp.Views.UserShow = Backbone.View.extend({
       drop: function(event, ui) {
         var recipeId = ui.draggable.data().id;
         var collectionId = $(event.target).data().id;
-        debugger;
+  
         $.ajax ({
           url: "/users/" + fodderApp.currentUser.id + "/collections/" + collectionId + "/recipes/" + recipeId + "/collection_recipe",
           type: "POST",

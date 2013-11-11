@@ -23,7 +23,7 @@ fodderApp.Views.RecipeShow = Backbone.View.extend({
    
    var errorCallback = function (model,xhr) {
      // don't want to do anything
-     alert("In failure callback")
+     this.$("#added_info").html("<p>Already in collection<p>")
    };
 
    var CollectionRecipe = new fodderApp.Models.CollectionRecipes();

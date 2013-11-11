@@ -32,7 +32,21 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 	},
  
   collectionExportList: function (event) {
-    
+    event.preventDefault();
+    var userCollectionRecipes = this.model._Recipes;
+    var list = [];
+    userCollectionRecipes.forEach ( function (recipe) { 
+      list.push("<h3>" + recipe.get("name") + "</h3><ul>")
+      ingredients = fodderApp.recipes.at(recipe.id).get("ingredients");
+      ingredients.forEach (function (ingredient) {
+        list.push("<li>" + ingredient.get("food") + "</li>")
+      })  
+      list.push("</ul>")   
+    } )
+
+    $(".modal-body").html(
+      list
+    )
   },
 	
 	render: function () {
