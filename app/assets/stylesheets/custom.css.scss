@@ -2,25 +2,58 @@
 
 body { padding-top: 70px; }
 
-
+//.ellipsis {
+//    white-space: nowrap;
+//    overflow: hidden;
+//    text-overflow: ellipsis;  // IE 6+, FF 7+, Op 11+, Saf 1.3+, Chr 1+
+//    -o-text-overflow: ellipsis;  // for Opera 9 & 10
+//}
 
 .thumbnail > img {
     display: block;
-    height: 100px; /* add this */
+    height: 135px; /* add this */
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 5px;
+      width: 100%;
 //    max-width: 100%;
 }
+
+.delete {
+// position: relative; top: 0px; right: 0px;
+ position: absolute; bottom: 0px; right: 0px;
+ 
+}
+
+.collection-options {
+  height: 50px;
+  padding: 10px !important;
+}
+
+.drag {
+ position: absolute; bottom: 0px; left: 0px;
+ font-size: 30px;
+}
+
+.hoverClass{
+    border: solid black 3px;
+}
+ 
 
 .recipe {
   min-height: 250px;
   height: 250px;
+  position: relative;
+  background: white;
 }
 
 ul.thumbnails li.span3 {
   margin-right : 0px;
   margin-left: 0px;
+}
+
+.book {
+  background: url("book-spine.jpg") transparent;
+  background-size: 100% 100%;
 }
 
 .collection {

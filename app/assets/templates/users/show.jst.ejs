@@ -1,25 +1,48 @@
+<script>
+      
+
+</script>
+
 <ul class="nav nav-list">
 <li class="nav-header"><h4>Browse</h4></li>
 
-  <a class="btn" href="#/selection/all" id='browse-all'>All</a>
-    <a class="btn" href="#/selection/fast" id='browse-fast'>Fast</a>
-    <a class="btn" href="#/selection/slow" id='browse-slow'>Slow</a>
+<li><div class = "span12">
+<a class="btn span12" href="#/selection/all" id='browse-all'>All</a>
+</div><br></li>
+
+<li><div class="span12 btn-group">
+  <a class="btn span6" href="#/selection/fast-healthy" id='browse-fast'>Speedy <br> & Healthy</a>
+   <a class="btn span6" href="#/selection/slow-healthy" id='browse-slow'>Ponderous <br>& Healthy</a>
+</div>
+</li>
+
+<li><div class = "span12 btn-group" >
+ <a class="btn span6" href="#/selection/fast-decadent" id='browse-fast'>Speedy <br>& Decadent</a>
+    <a class="btn span6" href="#/selection/slow-decadent" id='browse-slow'>Ponderous <br>& Decadent</a>
+</div></li>
+
+<li class = "span12"></li>
 
 <% if (fodderApp.currentUser == null) { %>
  <h6>Please Sign In or Sign Up to create and view your own recipe collections</h6>
 <% } else { %>
 
-    <li class="nav-header"><h4><%= user.escape("username") %>'s collections</h4></li>
+    <li class="nav-header"><h4><%= user.escape("username") %>'s collections</h4><h6>&#8853; Drag and drop recipes into collections</h6></li>
  <% collections.forEach( function (collection) { %>
  <% collection_url = "#/users/" + user.escape("id") + "/collections/" + collection.escape("id") %>
- <li class="active">
-   <a href="<%=collection_url%>" class="thumbnail collection" >
-  <div class="caption"><h4><%= collection.escape("name") %></h4></div>  
-<button class="danger btn-small" id="delete-button"" data-id="<%=collection.escape("id") %>">
-Delete</button>
+ 
+ <li class="active span12">
+
+
+   <a href="<%=collection_url%>" class="collection book span10" data-id = <%= collection.escape("id") %>>  
+  <div class="caption" color="white"><h4><%= collection.escape("name") %></h4></div>  
    </a>
-    
+ 
+
+ <button class="btn-mini btn-danger" id="delete-button"" data-id="<%=collection.escape("id") %>"><i class="icon-trash icon-white"></i></button>   
+
  </li>
+ <li class = "span12"></li>
  <% }); %>
  <br>
     <li>

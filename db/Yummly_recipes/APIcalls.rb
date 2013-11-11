@@ -75,6 +75,17 @@ end
   "Lime-yogurt-cake-with-blackberry-sauce-305506"
 ]
 
+Gin-and-tonic-cake-333421
+Bittersweet-chocolate-and-pear-cake-307088
+Joe_s-Molten-Marshmallow_chocolate-Cakes-My-Recipes
+Roasted-blueberry-cupcakes-333531
+Pina-Colada-Cupcakes-Serious-Eats-200948
+Maple-Bacon-Cupcakes-MyRecipes-242018
+Vegan-Cupcakes-Allrecipes
+Mojito-cupcakes-346000
+Gluten-free-vegan-gingerbread-307895
+Can_t-Get-Enough-Caramel-Cookies_-Allrecipes
+
 @day1_recipes.each do |recipe|
   get_recipe(recipe)
 end

@@ -22,5 +22,6 @@ window.fodderApp = {
 };
 
 $(document).ready(function(){
+  // fodderApp.recipes.reset(fodderApp.recipes).shuffle(), {silent:true});
   fodderApp.initialize();
 });

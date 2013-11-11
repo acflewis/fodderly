@@ -7,22 +7,21 @@ Known bugs:
 -- intiialize router, so don't have to look up #content
 -- currently have an alert when fails to get collection
 -- dry up recipe show code
+-- scrolling need to move mouse before it registers where it used to be
 
 
 Immediate to dos:
 -- need to add "rename" to sidebar collections
--- need to add "delete recipe" from collection view
 -- make collections drop down only include those it is not already added to
--- reset window to top - javascript
 -- when delete collection when viewing colleciton, should go to all recipes
 
 
 Next to dos:
 -- drag and drop recipes into collections
--- fix recipe thumbnails
 -- need to add Notes
 -- need Guest account 
 -- user can add recipes
+-- add infinite scroll
 
 Nice to haves:
 -- need to initialize new user with "Shop for me collection"

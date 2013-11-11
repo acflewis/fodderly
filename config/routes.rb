@@ -4,7 +4,7 @@ FodderApp::Application.routes.draw do
     resources :collections do 
       resources :collection_recipes, :only => [:create]
       resources :recipes, :only => [:show, :create, :destroy] do
-        resource :collection_recipe, :only => [:destroy]
+        resource :collection_recipe, :only => [:destroy, :create]
       end
     end
   end

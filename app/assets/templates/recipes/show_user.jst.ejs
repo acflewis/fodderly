@@ -1,3 +1,9 @@
+<script>
+$(function() {
+   $('body').scrollTop(0);
+});
+</script>
+
 <div class="row-fluid" id="recipe_show">
 <div class = "span6" >
 
@@ -26,9 +32,14 @@ Please visit <a href = <%= rec_url %>>here</a>
 <% image_url = recipe.escape("image_url") %>
 <img src="<%= image_url %>" alt="some_text" width="250px">
 <br>
-<h5>Energy: <%= recipe.escape("energy_value") %> <%= recipe.escape("energy_unit") %></h5>
 
-<h5>Total preparation time: <%= recipe.escape("total_time_s") %> seconds</h5>
+<% if (recipe.escape("energy_value") != "") { %>
+<h5>Energy: <%= recipe.escape("energy_value") %> <%= recipe.escape("energy_unit") %></h5>
+<% } %>
+
+<% if (recipe.escape("total_time_s") != "") { %>
+<h5>Total preparation time: <%= recipe.escape("total_time_s")/60 %> minutes</h5>
+<% } %>
 
 <h5>Number of servings: <%= recipe.escape("num_servings") %></h5>
 

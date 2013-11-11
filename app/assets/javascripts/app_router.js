@@ -12,6 +12,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
     });
     userView.render();
     $('#sidebar').html(userView.$el);
+    
   },
   
   // setUpBrowsebar: function () {
@@ -24,14 +25,32 @@ fodderApp.AppRouter = Backbone.Router.extend({
     
   showRecipesIndex: function (option) {
     var version = "browse";
-    
-    if (option=="fast") {
-      var recipes = new fodderApp.Collections.Recipes(fodderApp.recipes.filter(function(recipe) { return recipe.get("total_time_s") < 1800 } ));
-      var title = "Fast recipes"
-    } else if (option=="slow") {
-      var recipes = new fodderApp.Collections.Recipes(fodderApp.recipes.filter(function(recipe) { return recipe.get("total_time_s") > 1800 } ));
-      var title = "Slow recipes"
-    } else if (option=="all") {
+    var speedy = 1800;
+    var healthy = 400;
+    var info_recipes = new fodderApp.Collections.Recipes(fodderApp.recipes.filter(function(recipe) { 
+      return recipe.get("total_time_s") != null &&
+             recipe.get("energy_value") != null } ));
+    if (option=="fast-healthy") {
+      var recipes = new fodderApp.Collections.Recipes(info_recipes.filter(function(recipe) { 
+        return recipe.get("total_time_s") < speedy &&
+               recipe.get("energy_value") < healthy} ));
+      var title = "Speedy and Healthy recipes"
+    } else if (option=="fast-decadent") {
+      var recipes = new fodderApp.Collections.Recipes(info_recipes.filter(function(recipe) { 
+        return recipe.get("total_time_s") < speedy &&
+               recipe.get("energy_value") > healthy} ));
+      var title = "Speedy and Decadent recipes"
+    } else if (option=="slow-healthy") {
+      var recipes = new fodderApp.Collections.Recipes(info_recipes.filter(function(recipe) { 
+        return recipe.get("total_time_s") > speedy &&
+               recipe.get("energy_value") < healthy } ));
+      var title = "Ponderous and Healthy recipes"
+    } else if (option=="slow-decadent") {
+      var recipes = new fodderApp.Collections.Recipes(info_recipes.filter(function(recipe) { 
+        return recipe.get("total_time_s") > speedy &&
+               recipe.get("energy_value") > healthy  } ));
+       var title = "Ponderous and Decadent recipes"
+    }  else if (option=="all") {
       var recipes = fodderApp.recipes;
       var title = "All recipes";
     } else if (option==undefined) {
@@ -46,6 +65,9 @@ fodderApp.AppRouter = Backbone.Router.extend({
     });
     
     this._swapView(indexView);
+
+ 
+  
   },
   
 	
@@ -76,6 +98,8 @@ fodderApp.AppRouter = Backbone.Router.extend({
       collectionView.render("collection", userCollection.get("name"));
       that._swapView(collectionView);
     };   
+    
+
   },
  
   _swapView: function (newView) {
@@ -86,6 +110,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
 
     this._prevView = newView;
     newView.render();
+    console.log(newView.$el)
     $("#content").html(newView.$el);
   }    
 })

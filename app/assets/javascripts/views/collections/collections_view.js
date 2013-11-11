@@ -9,6 +9,7 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
   
   events: {
    "click #recipe-delete-button": "collectionRecipeDestroy",
+   "click #export-ingedient-list": "collectionExportList"
   },
   
 	collectionRecipeDestroy: function (event) {
@@ -30,6 +31,9 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
     })  
 	},
  
+  collectionExportList: function (event) {
+    
+  },
 	
 	render: function () {
     userCollection = this.model;
@@ -42,6 +46,17 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 		});
 		
 		this.$el.html(renderedContent);
+    
+    $(".drag").draggable({});
+
+    $('.dotdotdot').dotdotdot({ 
+        ellipsis: '... ', 
+        wrap: 'word', 
+        after: null, 
+        watch: true, 
+        height: 70 
+    });
+    
 		
 		return this;
 	}

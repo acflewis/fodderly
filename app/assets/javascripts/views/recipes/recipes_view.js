@@ -14,6 +14,7 @@ fodderApp.Views.RecipeShow = Backbone.View.extend({
  collectionSelect: function (event) {
    event.preventDefault();
    var that  = this;
+ 
    var formContents = $(event.currentTarget).serializeJSON();
    
    var successCallback = function (model) {

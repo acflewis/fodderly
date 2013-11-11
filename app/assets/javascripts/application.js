@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.serializeJSON
+//= require jquery.dotdotdot.js
+//= require jquery.ui.all
 //= require underscore
 //= require backbone
 //= require fodder_app
