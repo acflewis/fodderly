@@ -23,6 +23,7 @@ fodderApp.Models.Collection = Backbone.Model.extend({
     toJSON: function () {
       // get rid of user
       var json = _.extend({}, this.attributes);
+      delete json.user;
       json.recipes = this.collection_recipes().toJSON();
     
       return json;

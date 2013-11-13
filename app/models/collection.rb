@@ -6,7 +6,7 @@ class Collection < ActiveRecord::Base
   has_many :recipes, through: :collection_recipes
   
   def as_json(options = {})
-    super(:methods => [:user])
+    super(options.merge(:methods => [:user]))
   end
   
 end

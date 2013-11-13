@@ -7,6 +7,10 @@ fodderApp.AppRouter = Backbone.Router.extend({
     "collections" : "showCollectionsIndex",
     "collections/:id" : "showOtherCollection"
   },
+  
+  initialize: function () {
+    this.content = $('#content')
+  },
 	
   setUpSidebar: function () {
     var userView = new fodderApp.Views.UserShow({
@@ -99,7 +103,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
     userCollection.fetch({
       success: callback,
       error: function() {
-        alert("fail")
+        console.log("fail")
       }
     }); 
         
@@ -117,15 +121,17 @@ fodderApp.AppRouter = Backbone.Router.extend({
 
   showOtherCollection: function (collection_id) {
     var that = this;
+    
     var otherCollection = new fodderApp.Models.Collection({id: collection_id});
     otherCollection.fetch({
       success: callback,
       error: function() {
-        alert("fail")
+        console.log("fail")
       }
     }); 
         
     function callback (uCol, error, options) {
+      
       var collectionView = new fodderApp.Views.CollectionOtherShow({
         model: otherCollection,
         collection: otherCollection.collection_recipes()
@@ -145,7 +151,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
 
     this._prevView = newView;
     newView.render();
-    $("#content").html(newView.$el);
+    this.content.html(newView.$el);
   }    
 })
 

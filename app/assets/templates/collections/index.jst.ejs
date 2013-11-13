@@ -1,0 +1,42 @@
+<script>
+$(function() {
+   $('body').scrollTop(0);
+});
+</script>
+
+<% var count = 1 %>
+<ul class="thumbnails">
+    <% collections.forEach(function (individualCollection) { %>
+      <% var cu = fodderApp.currentUser %>
+      <% if (cu === null) { cuid = null } else { cuid = cu.id }%>
+      <% if (individualCollection.escape("user_id") != cuid ) {%>
+
+    <% if (count % 4 == 0) { %>
+      <div class="row-fluid">
+    <% }; %>
+       <li class="span3">
+         <a href="#/collections/<%= individualCollection.id %>" class="thumbnail collection-book span10">   
+         <div class="dotdotdot collection-book-title span8"><h4><%= individualCollection.escape("name") %></h4></div>
+        
+         <br>
+       </a>        
+       </li>
+     <% if (count % 4 == 0) { %>
+       </div>
+     <% } %>
+     <% count++ %>
+      <% } %>
+    <% }); %>
+</ul>
+	
+</div>
+
+<script>
+     $('.dotdotdot').dotdotdot({ 
+        ellipsis: '... ', 
+        wrap: 'word', 
+        after: null, 
+        watch: true, 
+        height: 150 
+    });
+</script>

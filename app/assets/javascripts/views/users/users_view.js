@@ -26,7 +26,7 @@ fodderApp.Views.UserShow = Backbone.View.extend({
         }
       },
       error: function() {
-        alert("fail")
+        console.log("fail")
       }
     });    
 	},
