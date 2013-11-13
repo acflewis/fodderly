@@ -39,7 +39,6 @@ class CollectionsController < ApplicationController
   
   def show
     collection = Collection.find(params[:id])
-    p collection.to_json(:include => [:recipes])
     render :json => collection, :include => [:recipes]
   end
   

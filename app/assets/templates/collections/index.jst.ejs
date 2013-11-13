@@ -17,7 +17,7 @@ $(function() {
        <li class="span3">
          <a href="#/collections/<%= individualCollection.id %>" class="thumbnail collection-book span10">   
          <div class="dotdotdot collection-book-title span8"><h4><%= individualCollection.escape("name") %></h4></div>
-        
+         <div class="collection-book-author span8"><h6>By <%= individualCollection.get("user").username %></h6></div>           
          <br>
        </a>        
        </li>
