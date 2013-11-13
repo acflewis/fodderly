@@ -22,7 +22,13 @@ class CollectionsController < ApplicationController
   end
   
   def update
-    
+      @collection = Collection.find(params[:id])
+      
+      if @collection.update_attributes(params[:collection])
+          render :json => @collection.to_json
+      else 
+          render :json => [{ :error => "An error was encountered while processing your rename request. Please try again." }], :status => 304
+      end      
   end
   
   def destroy
@@ -37,7 +43,8 @@ class CollectionsController < ApplicationController
   end
   
   def index
-    render :json => current_user.collections
+    # render :json => current_user.collections
+    render :json => Collection.all
   end
   
 end

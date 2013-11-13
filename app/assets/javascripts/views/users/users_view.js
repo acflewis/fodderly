@@ -9,7 +9,8 @@ fodderApp.Views.UserShow = Backbone.View.extend({
   },
   
   events: {
-   "click #delete-button": "collectionDestroy"
+   "click #delete-button": "collectionDestroy",
+   "click #rename-submit-button": "collectionUpdate"
   },
   
 	collectionDestroy: function (event) {
@@ -20,24 +21,48 @@ fodderApp.Views.UserShow = Backbone.View.extend({
     userCollection.fetch({
       success: function() {
         userCollection.destroy();
+        if (Backbone.history.fragment.split("/")[3] == userCollection.get("id")) {
+          Backbone.history.navigate("/#", {trigger: true});
+        }
       },
       error: function() {
         alert("fail")
       }
     });    
 	},
+  
+  collectionUpdate: function (event) {
+    console.log("In update function")
+    event.preventDefault();
+    var form =  $(event.target).parent().serializeJSON();
+    var newName = form.collection.name;
+    var collectionId = form.collection.id;
+      var userCollection = fodderApp.currentUser.get("collections").get(collectionId);
+      userCollection.save({name: newName} ,{
+        success: function() {
+          console.log("success")
+        },
+        error: function() {
+          console.log("fail")
+        }
+      });    
+  },
 	
-	render: function () {      
+	render: function () {   
+    var otherCollections = new fodderApp.Collections.AllCollections;
+    otherCollections.fetch();   
         if (fodderApp.currentUser === null) {
           var renderedContent = this.template({
               user: null,
-              collections: null
+              collections: null,
+              other_collection: otherCollections
           });
           this.$el.html(renderedContent);
           } else {
             var renderedContent = this.template({
                 user: fodderApp.currentUser ,
-                collections: fodderApp.currentUser.get("collections")
+                collections: fodderApp.currentUser.get("collections"),
+                other_collections: otherCollections
             });
             this.$el.html(renderedContent);
         }

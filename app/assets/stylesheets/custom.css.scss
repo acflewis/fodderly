@@ -18,6 +18,7 @@ body { padding-top: 70px; }
 //    max-width: 100%;
 }
 
+
 .delete {
 // position: relative; top: 0px; right: 0px;
  position: absolute; bottom: 0px; right: 0px;
@@ -56,9 +57,29 @@ ul.thumbnails li.span3 {
   background-size: 100% 100%;
 }
 
-.collection {
-  background-color: red;
+.collection-book {
+  background: url("old_book.jpg") transparent;
+  background-size: 100% 100%;
+  min-height: 250px;
+  height: 250px;
+  position: relative;
 }
+
+.collection-book-author {
+  color: burlywood;
+  position: absolute; bottom: 25px; left:40px;
+}
+
+.collection-book-title {
+  color: burlywood; 
+  position: absolute; top: 30px; left:40px;
+  font: bookantiqua;
+}
+
+.spine-text {
+  color: white; 
+}
+
 
 //ul.thumbnails li.span3:nth-child(4n + 5) {
 //  margin-left : 0px;

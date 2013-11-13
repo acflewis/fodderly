@@ -4,7 +4,7 @@
  <h3><%= title %></h3>
  
  <% if (version == "collection") { %>
- <div class="hero-unit collection-options">
+ <div class="hero-unit collection-options span11">
   Export ingredients list for all items in collection: <button class="btn-small" id="export-ingedient-list" data-toggle="modal" data-target="#myModal">Make list</button>
  </div>
  <% } %>
@@ -68,7 +68,8 @@
     $(".drag").draggable({
       helper: 'clone'
     });
-
+    
+   
     $('.dotdotdot').dotdotdot({ 
         ellipsis: '... ', 
         wrap: 'word', 

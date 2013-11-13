@@ -1,65 +1,95 @@
-<script>
-      
-
-</script>
-
 <ul class="nav nav-list">
-<li class="nav-header"><h4>Browse</h4></li>
+  <li class="nav-header"><h4>Browse</h4></li>
 
-<li><div class = "span12">
-<a class="btn span12" href="#/selection/all" id='browse-all'>All</a>
-</div><br></li>
+  <li><div class = "span12"><a class="btn span12" href="#/selection/all" id='browse-all'>All</a></div><br></li>
 
-<li><div class="span12 btn-group">
-  <a class="btn span6" href="#/selection/fast-healthy" id='browse-fast'>Speedy <br> & Healthy</a>
-   <a class="btn span6" href="#/selection/slow-healthy" id='browse-slow'>Ponderous <br>& Healthy</a>
-</div>
-</li>
+  <li><div class="span12 btn-group">
+    <a class="btn span6" href="#/selection/fast-healthy" id='browse-fast'>Speedy <br> & Healthy</a>
+    <a class="btn span6" href="#/selection/slow-healthy" id='browse-slow'>Ponderous <br>& Healthy</a>
+  </div></li>
 
-<li><div class = "span12 btn-group" >
- <a class="btn span6" href="#/selection/fast-decadent" id='browse-fast'>Speedy <br>& Decadent</a>
+  <li><div class = "span12 btn-group" >
+    <a class="btn span6" href="#/selection/fast-decadent" id='browse-fast'>Speedy <br>& Decadent</a>
     <a class="btn span6" href="#/selection/slow-decadent" id='browse-slow'>Ponderous <br>& Decadent</a>
-</div></li>
+  </div></li>
 
-<li class = "span12"></li>
+  <li class = "span12"></li>
 
-<% if (fodderApp.currentUser == null) { %>
- <h6>Please Sign In or Sign Up to create and view your own recipe collections</h6>
-<% } else { %>
+  <% if (fodderApp.currentUser == null) { %>
+    <h6>Please Sign In or Sign Up to create and view your own recipe collections</h6>
+    <% } else { %>
 
-    <li class="nav-header"><h4><%= user.escape("username") %>'s collections</h4><h6>&#8853; Drag and drop recipes into collections</h6></li>
- <% collections.forEach( function (collection) { %>
- <% collection_url = "#/users/" + user.escape("id") + "/collections/" + collection.escape("id") %>
+      <li class="nav-header"><h4><%= user.escape("username") %>'s collections</h4><h6>&#8853; Drag and drop recipes into collections</h6></li>
+      
+      <% collections.forEach( function (collection) { %>
+        <% var collectionId = collection.escape("id")  %>   
+        <% collection_url = "#/users/" + user.escape("id") + "/collections/" + collection.escape("id") %>
  
- <li class="active span12">
-
-
-   <a href="<%=collection_url%>" class="collection book span10" data-id = <%= collection.escape("id") %>>  
-  <div class="caption" color="white"><h4><%= collection.escape("name") %></h4></div>  
-   </a>
+        <li class="active span12">
+          
+          <a href="<%=collection_url%>" class="collection book span10" data-id = <%= collection.escape("id") %>>  
+            <div class="caption spine-text"><h4><%= collection.escape("name") %></h4></div>  
+          </a>
+  
+          <div class="btn-group">
+            <button type="button" class="btn-small dropdown-toggle" data-toggle="dropdown">
+              <span class="caret" color="black"></span>
+              <span class="sr-only"></span>
+            </button>
+            <ul class="dropdown-menu pull-right" role="menu">
+              <% var modalIdtarget = "#renameModal" + collectionId %>
+              <% var modalId = "renameModal" + collectionId %>
+              <li id="rename-button" data-id="<%=collection.escape("id") %>" data-toggle="modal" data-target="<%= modalIdtarget %>"><a href="#">Rename</a></li>
+              <li id="delete-button" data-id="<%=collection.escape("id") %>"><a href="#">Delete</a></li>
+            </ul>
+          </div>
+   
+          <div class="modal fade" id="<%= modalId %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">Please enter a new name for the collection:</h4>
+                </div>
+                <div class="modal-body">     
+                  <form class="form" id="rename-form">
+                    <input class="span12" type="text" placeholder="New name" name="collection[name]">
+                    <input type="hidden" name="collection[id]" value="<%= collectionId %>">
+                    <input type="submit" data-dismiss="modal" class="btn" value="Rename collection" id="rename-submit-button">    
+                  </form>  
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+        </li>
+        <li class = "span12"></li>
  
-
- <button class="btn-mini btn-danger" id="delete-button"" data-id="<%=collection.escape("id") %>"><i class="icon-trash icon-white"></i></button>   
-
- </li>
- <li class = "span12"></li>
- <% }); %>
- <br>
+      <% }); %>
+ 
+    <br>
     <li>
-    <% create_collection_url = "users/" + user.escape("id") + "/collections" %>
-    <form class="form" action="<%= create_collection_url %>" method="post">
-      <input class="span12" type="text" placeholder="Name" name="collection[name]">
-   <input
-      name="authenticity_token"
-      type="hidden"
-      <% var csrf_token = JSON.parse($("#bootstrapped_csrf_token").html()).csrf_token %>
-      value="<%= csrf_token %>">
-      <button type="submit" class="btn">Create collection</button>
-    </form>
+      <% create_collection_url = "users/" + user.escape("id") + "/collections" %>
+      <form class="form" action="<%= create_collection_url %>" method="post">
+        <input class="span12" type="text" placeholder="Name" name="collection[name]">
+        <input
+        name="authenticity_token"
+        type="hidden"
+        <% var csrf_token = JSON.parse($("#bootstrapped_csrf_token").html()).csrf_token %>
+        value="<%= csrf_token %>">
+        <button type="submit" class="btn">Create collection</button>
+      </form>
     </li>
-    
-    <% } %>
+  <% } %>
+
+  <li class="nav-header"><h4>Other User's collections</h4></li>
+  
+  <a href="#/collections" data-id = "browse-other-collections" class="btn">  
+    Browse other people's collections 
+  </a>
+  
 </ul>
+
+
 
 
 

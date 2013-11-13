@@ -3,7 +3,9 @@ fodderApp.AppRouter = Backbone.Router.extend({
     "" : "showRecipesIndex",
     "recipes/:id" : "showRecipePage",
     "users/:id/collections/:id" : "showCollection",
-    "selection/:option" : "showRecipesIndex"
+    "selection/:option" : "showRecipesIndex",
+    "collections" : "showCollectionsIndex",
+    "collections/:id" : "showOtherCollection"
   },
 	
   setUpSidebar: function () {
@@ -22,6 +24,20 @@ fodderApp.AppRouter = Backbone.Router.extend({
   //   userView.render();
   //   $('#browsebar').html(userView.$el);
   // },
+  
+  showCollectionsIndex: function (option) {
+    var that = this;
+    fodderApp.collections = new fodderApp.Collections.AllCollections();
+ 
+    fodderApp.collections.fetch({
+		  success: function () {
+        var indexView = new fodderApp.Views.CollectionsIndex({
+          collection: fodderApp.collections,
+		    })
+        that._swapView(indexView); 
+	    }
+    });	    
+  },
     
   showRecipesIndex: function (option) {
     var version = "browse";
@@ -64,10 +80,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
       version: version
     });
     
-    this._swapView(indexView);
-
- 
-  
+    this._swapView(indexView); 
   },
   
 	
@@ -101,6 +114,28 @@ fodderApp.AppRouter = Backbone.Router.extend({
     
 
   },
+
+  showOtherCollection: function (collection_id) {
+    var that = this;
+    var otherCollection = new fodderApp.Models.Collection({id: collection_id});
+    otherCollection.fetch({
+      success: callback,
+      error: function() {
+        alert("fail")
+      }
+    }); 
+        
+    function callback (uCol, error, options) {
+      var collectionView = new fodderApp.Views.CollectionOtherShow({
+        model: otherCollection,
+        collection: otherCollection.collection_recipes()
+      });
+      collectionView.render("collection", otherCollection.get("name"));
+      that._swapView(collectionView);
+    };   
+    
+
+  },
  
   _swapView: function (newView) {
     if (this._prevView) {
@@ -110,7 +145,6 @@ fodderApp.AppRouter = Backbone.Router.extend({
 
     this._prevView = newView;
     newView.render();
-    console.log(newView.$el)
     $("#content").html(newView.$el);
   }    
 })

@@ -10,22 +10,15 @@ Known bugs:
 -- scrolling need to move mouse before it registers where it used to be
 
 
-Immediate to dos:
+To dos:
 -- need to add "rename" to sidebar collections
 -- make collections drop down only include those it is not already added to
--- when delete collection when viewing colleciton, should go to all recipes
-
-
-Next to dos:
--- drag and drop recipes into collections
 -- need to add Notes
 -- need Guest account 
 -- user can add recipes
 -- add infinite scroll
 
 Nice to haves:
--- need to initialize new user with "Shop for me collection"
--- export ingredients
 -- user can export recipe as PDF
 -- users can make their collections public
 

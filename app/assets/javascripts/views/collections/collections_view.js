@@ -33,20 +33,21 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
  
   collectionExportList: function (event) {
     event.preventDefault();
+    $(".modal-body").empty();  
     var userCollectionRecipes = this.model._Recipes;
-    var list = [];
     userCollectionRecipes.forEach ( function (recipe) { 
-      list.push("<h3>" + recipe.get("name") + "</h3><ul>")
-      ingredients = fodderApp.recipes.at(recipe.id).get("ingredients");
+      var name = $("<h3></h3>").text(recipe.escape("name"));
+      console.log(name)
+      $(".modal-body").append(name);
+      $(".modal-body").append("<ul>");
+      ingredients = fodderApp.recipes.at(recipe.escape("id")).get("ingredients");
       ingredients.forEach (function (ingredient) {
-        list.push("<li>" + ingredient.get("food") + "</li>")
+        var ingredient = $("<li></li>").text(ingredient.escape("food"));
+        $(".modal-body").append(ingredient);
       })  
-      list.push("</ul>")   
+      $(".modal-body").append("</ul>");  
     } )
 
-    $(".modal-body").html(
-      list
-    )
   },
 	
 	render: function () {
@@ -60,16 +61,7 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 		});
 		
 		this.$el.html(renderedContent);
-    
-    $(".drag").draggable({});
 
-    $('.dotdotdot').dotdotdot({ 
-        ellipsis: '... ', 
-        wrap: 'word', 
-        after: null, 
-        watch: true, 
-        height: 70 
-    });
     
 		
 		return this;
