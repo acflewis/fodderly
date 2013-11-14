@@ -8,7 +8,9 @@ $(function() {
 <ul class="thumbnails">
     <% collections.forEach(function (individualCollection) { %>
       <% var cu = fodderApp.currentUser %>
-      <% if (cu === null) { cuid = null } else { cuid = cu.id }%>
+      
+      <% if (typeof cu.id == "undefined") { cuid = null } else { cuid = cu.id }%>
+      
       <% if (individualCollection.escape("user_id") != cuid ) {%>
 
     <% if (count % 4 == 0) { %>
