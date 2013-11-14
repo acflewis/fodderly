@@ -8,12 +8,12 @@ Known issues:
 -- collections drop down in recipe show also includes those it is not already added to
 
 Wednesday to dos:
--- fix user credentials
 -- post to fodderly.com
 
 To dos:
 -- bug such that can only click on List once
--- check and fix when get slow updates
+-- faster logout
+-- print "Wrong credentials"
 -- need to add Notes
 -- user can add recipes
 -- add infinite scroll
