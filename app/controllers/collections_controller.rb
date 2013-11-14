@@ -11,7 +11,7 @@ class CollectionsController < ApplicationController
     @collection.user_id = params[:user_id]
      # @collection.user_id = current_user.id
     if @collection.save!
-      redirect_to root_url
+      render :json => @collection
     else
       render :json => @collection.errors.full_messages
     end

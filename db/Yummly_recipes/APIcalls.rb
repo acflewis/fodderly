@@ -75,17 +75,29 @@ end
   "Lime-yogurt-cake-with-blackberry-sauce-305506"
 ]
 
-Gin-and-tonic-cake-333421
-Bittersweet-chocolate-and-pear-cake-307088
-Joe_s-Molten-Marshmallow_chocolate-Cakes-My-Recipes
-Roasted-blueberry-cupcakes-333531
-Pina-Colada-Cupcakes-Serious-Eats-200948
-Maple-Bacon-Cupcakes-MyRecipes-242018
-Vegan-Cupcakes-Allrecipes
-Mojito-cupcakes-346000
-Gluten-free-vegan-gingerbread-307895
-Can_t-Get-Enough-Caramel-Cookies_-Allrecipes
+@day2_recipes = 
+["Gin-and-tonic-cake-333421", 
+"Bittersweet-chocolate-and-pear-cake-307088", 
+"Joe_s-Molten-Marshmallow_chocolate-Cakes-My-Recipes", 
+"Roasted-blueberry-cupcakes-333531", 
+"Pina-Colada-Cupcakes-Serious-Eats-200948", 
+"Maple-Bacon-Cupcakes-MyRecipes-242018", 
+"Vegan-Cupcakes-Allrecipes", 
+"Mojito-cupcakes-346000", 
+"Gluten-free-vegan-gingerbread-307895", 
+"Can_t-Get-Enough-Caramel-Cookies_-Allrecipes", 
+"Roasted-butternut-squash-with-lime-and-rosemary-309700", 
+"Pizza-with-crispy-kale_-butternut-squash_-bacon-_-smoked-mozzarella-307942", 
+"Vanilla-roasted-pears-305531", 
+"Sweet-potato-salad-with-cranberries-and-pecans-305778", 
+"Roasted-cauliflower-recipe-with-bacon-and-garlic-315035", 
+"Easy-garlic-and-lemon-shrimp-309257", 
+"Lentils-With-Butternut-Squash-And-Walnuts-Epicurious", 
+"Baked-Zucchini-Chips-Allrecipes", 
+"Vegetarian-lentil-burgers-308886", 
+"Black-Lentil-And-Couscous-Salad-My-Recipes", 
+"Melanzane-alla-parmigiana---aubergine-parmigiana-351323"]
 
-@day1_recipes.each do |recipe|
+@day2_recipes.each do |recipe|
   get_recipe(recipe)
 end

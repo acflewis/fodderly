@@ -2,7 +2,7 @@ fodderApp.Models.Collection = Backbone.Model.extend({
     // urlRoot: "/collections",
     
     urlRoot: function () {
-        return "/users/" + this.get("user_id") + "/collections";
+        return "/users/" + fodderApp.currentUser.escape("id") + "/collections";
     },
     
     collection_recipes: function () {

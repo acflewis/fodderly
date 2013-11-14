@@ -32,22 +32,31 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 	},
  
   collectionExportList: function (event) {
+    console.log("exporting...")
     event.preventDefault();
-    $(".modal-body").empty();  
+    $(".list-modal-body").empty();
+    $recipeDiv = $("<div>");
+    
     var userCollectionRecipes = this.model._Recipes;
     userCollectionRecipes.forEach ( function (recipe) { 
-      var name = $("<h3></h3>").text(recipe.escape("name"));
+      var name = $("<h3>");
+      name.html(recipe.escape("name"))
       console.log(name)
-      $(".modal-body").append(name);
-      $(".modal-body").append("<ul>");
+      $recipeDiv.append(name);
+      var $ul = $("<ul>");
       ingredients = fodderApp.recipes.at(recipe.escape("id")).get("ingredients");
+          
       ingredients.forEach (function (ingredient) {
-        var ingredient = $("<li></li>").text(ingredient.escape("food"));
-        $(".modal-body").append(ingredient);
+        var ingredientList = $("<li>");
+        ingredientList.html(ingredient.escape("food"));
+        $ul.append(ingredientList);
       })  
-      $(".modal-body").append("</ul>");  
+      $recipeDiv.append($ul);
     } )
+    $(".list-modal-body").html($recipeDiv);
+    $('#myModal').modal('show');
 
+    
   },
 	
 	render: function () {
@@ -61,9 +70,7 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 		});
 		
 		this.$el.html(renderedContent);
-
-    
-		
+	
 		return this;
 	}
 	

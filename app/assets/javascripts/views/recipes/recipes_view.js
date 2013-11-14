@@ -41,7 +41,7 @@ fodderApp.Views.RecipeShow = Backbone.View.extend({
 	render: function () {
         
         recipe = this.model;       
-        if (fodderApp.currentUser === null) {
+        if (typeof fodderApp.currentUser.id != "undefined" ) {
       		var renderedContent = this.template_no_user({
       			recipe: recipe, 
             ingredients: recipe.get("ingredients")

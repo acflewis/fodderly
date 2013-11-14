@@ -15,10 +15,10 @@
 
   <li class = "span12"></li>
 
-  <% if (fodderApp.currentUser == null) { %>
+  <% if (typeof fodderApp.currentUser.id === "undefined" ) { %>
     <h6>Please Sign In or Sign Up to create and edit your own recipe collections</h6>
     <% } else { %>
-
+    
       <li class="nav-header"><h4><%= user.escape("username") %>'s collections</h4><h6>&#8853; Drag and drop recipes into collections</h6></li>
       
       <% collections.forEach( function (collection) { %>
@@ -67,18 +67,14 @@
       <% }); %>
  
     <br>
+
     <li>
-      <% create_collection_url = "users/" + user.escape("id") + "/collections" %>
-      <form class="form" action="<%= create_collection_url %>" method="post">
+      <form class="form">
         <input class="span12" type="text" placeholder="Name" name="collection[name]">
-        <input
-        name="authenticity_token"
-        type="hidden"
-        <% var csrf_token = JSON.parse($("#bootstrapped_csrf_token").html()).csrf_token %>
-        value="<%= csrf_token %>">
-        <button type="submit" class="btn">Create collection</button>
+        <button type="submit" class="btn" id='create-collection-button'>Create collection</button>
       </form>
-    </li>
+    </li>  
+    
   <% } %>
 
   <li class="nav-header"><h4>Other User's collections</h4></li>
