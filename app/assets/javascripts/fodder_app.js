@@ -4,6 +4,7 @@ window.fodderApp = {
   Views: {},
   Routers: {},
   initialize: function() {
+    debugger;
   var cu = JSON.parse($("#bootstrapped_current_user").html()).current_user;
   if (cu===null) {
     fodderApp.currentUser = new fodderApp.Models.User;
