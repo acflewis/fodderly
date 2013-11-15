@@ -15,7 +15,7 @@ window.fodderApp = {
   var $nb_el = $("#navbar");
   fodderApp.navBar = new fodderApp.Views.SessionsListen({el: $nb_el});
   fodderApp.navBar.render();
-  $("#changing-nav").html(fodderApp.navBar.$el)
+  $("#changing-nav").html(fodderApp.navBar.$el);
   fodderApp.recipes.fetch({
     success: function () {
       var appRouter = new fodderApp.AppRouter();
