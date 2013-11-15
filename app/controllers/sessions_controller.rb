@@ -18,9 +18,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout_current_user!
-   # render :json => "logged out"
-   redirect_to root_url
+  logout_current_user!
+   render :json => {text: "logged out"}
+   # redirect_to root_url
   end
 
   def new
