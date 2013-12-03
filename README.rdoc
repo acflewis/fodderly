@@ -1,4 +1,5 @@
 Fodderly -- currently hosted at http://fodderly.herokuapp.com/
+
 An App for browsing and organising recipes. Make collections, view the collections of others, export the ingredients from your collections as a shopping list.
 
 Known issues:
