@@ -1,23 +1,12 @@
 Fodderly read me
 
 Known issues:
--- Uncaught SyntaxError: Unexpected token u on "Sign Up" (doesn't effect functionality)
--- User credentials wrong currently yields JSON
 -- dry up recipe show code
 -- scrolling need to move mouse before it registers where it used to be
--- collections drop down in recipe show also includes those it is not already added to
+-- collections drop down in recipe show also includes those it is already added to
 
-Wednesday to dos:
--- post to fodderly.com
-
-To dos:
--- bug such that can only click on List once
--- faster logout
--- print "Wrong credentials"
+Functionality to add:
 -- need to add Notes
 -- user can add recipes
 -- add infinite scroll
-
-Nice to haves:
--- user can export recipe as PDF
 
