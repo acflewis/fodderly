@@ -1,12 +1,12 @@
-Fodderly read me
+Fodderly -- an App for browsing and organising recipes. Make collections, view the collections of others, export the ingredients from your collections as a shopping list.
 
 Known issues:
--- dry up recipe show code
--- scrolling need to move mouse before it registers where it used to be
--- collections drop down in recipe show also includes those it is already added to
+- dry up recipe show code
+- scrolling need to move mouse before it registers where it used to be
+- collections drop down in recipe show also includes those it is already added to
 
 Functionality to add:
--- need to add Notes
--- user can add recipes
--- add infinite scroll
+- user can add Notes
+- user can add recipes
+- add infinite scroll
 
