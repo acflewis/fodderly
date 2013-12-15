@@ -21,14 +21,6 @@ fodderApp.AppRouter = Backbone.Router.extend({
     
   },
   
-  // setUpBrowsebar: function () {
-  //   var userView = new fodderApp.Views.UsersBrowse({
-  //     model: fodderApp.currentUser
-  //   });
-  //   userView.render();
-  //   $('#browsebar').html(userView.$el);
-  // },
-  
   showCollectionsIndex: function (option) {
     var that = this;
     fodderApp.collections = new fodderApp.Collections.AllCollections();
@@ -70,7 +62,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
         return recipe.get("total_time_s") > speedy &&
                recipe.get("energy_value") > healthy  } ));
        var title = "Ponderous and Decadent recipes"
-    }  else if (option=="all") {
+    } else if (option=="all") {
       var recipes = fodderApp.recipes;
       var title = "All recipes";
     } else if (option==undefined) {
@@ -87,7 +79,6 @@ fodderApp.AppRouter = Backbone.Router.extend({
     this._swapView(indexView); 
   },
   
-	
   showRecipePage: function (id) {
     var recipe = fodderApp.recipes.get(id)
     var pageView = new fodderApp.Views.RecipeShow({
@@ -115,13 +106,10 @@ fodderApp.AppRouter = Backbone.Router.extend({
       collectionView.render("collection", userCollection.get("name"));
       that._swapView(collectionView);
     };   
-    
-
   },
 
   showOtherCollection: function (collection_id) {
-    var that = this;
-    
+    var that = this;  
     var otherCollection = new fodderApp.Models.Collection({id: collection_id});
     otherCollection.fetch({
       success: callback,
@@ -130,8 +118,7 @@ fodderApp.AppRouter = Backbone.Router.extend({
       }
     }); 
         
-    function callback (uCol, error, options) {
-      
+    function callback (uCol, error, options) {     
       var collectionView = new fodderApp.Views.CollectionOtherShow({
         model: otherCollection,
         collection: otherCollection.collection_recipes()
@@ -139,13 +126,10 @@ fodderApp.AppRouter = Backbone.Router.extend({
       collectionView.render("collection", otherCollection.get("name"));
       that._swapView(collectionView);
     };   
-    
-
   },
  
   _swapView: function (newView) {
     if (this._prevView) {
-      // this._prevView.stopListening();
       this._prevView.remove();
     }
 
@@ -154,16 +138,3 @@ fodderApp.AppRouter = Backbone.Router.extend({
     this.content.html(newView.$el);
   }    
 })
-
-//     
-//     showEditForm: function (id) {
-  //         var postedForm = new JournalApp.Views.NewPostForm({
-    //             model: JournalApp.posts.get(id)
-    //         });
-    //         $(".content").html(postedForm.render().$el)
-    //     },
-    //     
-    //     showNewForm: function () {
-      //         var postedForm = new JournalApp.Views.NewPostForm();
-      //         $(".content").html(postedForm.render().$el)
-      //     }

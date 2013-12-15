@@ -13,14 +13,12 @@ class SessionsController < ApplicationController
     else
       self.current_user = @user
       render :json => @user, :include => [:collections]
-      #redirect_to root_url
     end
   end
 
   def destroy
   logout_current_user!
    render :json => {text: "logged out"}
-   # redirect_to root_url
   end
 
   def new

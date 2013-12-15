@@ -8,7 +8,6 @@ class UsersController < ApplicationController
     if @user.save
       self.current_user = @user
       redirect_to root_url
-      # redirect_to user_url(@user)
     else
       render :json => @user.errors.full_messages
     end
@@ -23,8 +22,6 @@ class UsersController < ApplicationController
     if params.include?(:id)
       @user = User.find(params[:id])
       render :json => @user, :include => [:collections]
-    # else
-  #     redirect_to user_url(current_user)
     end
   end
 end

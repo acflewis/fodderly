@@ -5,16 +5,18 @@ window.fodderApp = {
   Routers: {},
   initialize: function() {
   var cu = JSON.parse($("#bootstrapped_current_user").html()).current_user;
-  if (cu===null) {
+  if (cu === null) {
     fodderApp.currentUser = new fodderApp.Models.User;
-  }  else {
+  } else {
     fodderApp.currentUser = new fodderApp.Models.User(cu, {parse:true});
   }
-  fodderApp.recipes = new fodderApp.Collections.Recipes();
+  
   var $nb_el = $("#navbar");
   fodderApp.navBar = new fodderApp.Views.SessionsListen({el: $nb_el});
   fodderApp.navBar.render();
   $("#changing-nav").html(fodderApp.navBar.$el);
+  
+  fodderApp.recipes = new fodderApp.Collections.Recipes();
   fodderApp.recipes.fetch({
     success: function () {
       var appRouter = new fodderApp.AppRouter();
@@ -26,7 +28,5 @@ window.fodderApp = {
 };
 
 $(document).ready(function(){
-  debugger;
-  // fodderApp.recipes.reset(fodderApp.recipes).shuffle(), {silent:true});
   fodderApp.initialize();
 });

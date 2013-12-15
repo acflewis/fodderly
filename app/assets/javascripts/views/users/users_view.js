@@ -2,10 +2,8 @@ fodderApp.Views.UserShow = Backbone.View.extend({
 	template: JST["users/show"],
 	
   initialize: function (options) {  
-   
-      this.listenTo(fodderApp.currentUser, "all", this.render);
+    this.listenTo(fodderApp.currentUser, "all", this.render);
      if (typeof fodderApp.currentUser.id != "undefined" ) {
-       console.log("listening to connections")
       this.listenTo(fodderApp.currentUser.get("collections"), "all", this.render);
     }
   },
@@ -69,24 +67,24 @@ fodderApp.Views.UserShow = Backbone.View.extend({
 	render: function () {   
     var otherCollections = new fodderApp.Collections.AllCollections;
     otherCollections.fetch();   
-        if (typeof fodderApp.currentUser.id === "undefined" ) {
-          var renderedContent = this.template({
-              user: null,
-              collections: null,
-              other_collection: otherCollections
-          });
-          this.$el.html(renderedContent);
-          } else {
-            var renderedContent = this.template({
-                user: fodderApp.currentUser ,
-                collections: fodderApp.currentUser.get("collections"),
-                other_collections: otherCollections
-            });
-            this.$el.html(renderedContent);
-        }
-        
-      this.attachDraggables() ;
-      return this;
+    if (typeof fodderApp.currentUser.id === "undefined" ) {
+      var renderedContent = this.template({
+          user: null,
+          collections: null,
+          other_collection: otherCollections
+      });
+      this.$el.html(renderedContent);
+      } else {
+        var renderedContent = this.template({
+            user: fodderApp.currentUser ,
+            collections: fodderApp.currentUser.get("collections"),
+            other_collections: otherCollections
+        });
+        this.$el.html(renderedContent);
+    }
+    
+    this.attachDraggables() ;
+    return this;
 	},
 	
   attachDraggables: function() {

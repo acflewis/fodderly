@@ -4,48 +4,44 @@
  <h3><%= title %></h3>
  
  <% if (version == "collection") { %>
- <div class="hero-unit collection-options span11">
-  Export ingredients list for all items in collection: <button class="btn-small" id="export-ingedient-list">Make list</button>
- </div>
+   <div class="hero-unit collection-options span11">
+    Export ingredients list for all items in collection: <button class="btn-small" id="export-ingedient-list">Make list</button>
+   </div>
  <% } %>
  
- 
-<% var count = 1 %>
-<ul class="thumbnails">
-    <% recipes.forEach(function (recipe) { %>
-    <% image_url = recipe.escape("image_url") %>
-    <% if (count % 4 == 0) { %>
-      <div class="row-fluid">
-    <% }; %>
-       <li class="span3">
-        
+  <% var count = 1 %>
+  <ul class="thumbnails">
+     <% recipes.forEach(function (recipe) { %>
+       <% image_url = recipe.escape("image_url") %>
+       <% if (count % 4 == 0) { %>
+         <div class="row-fluid">
+       <% }; %>
+       <li class="span3"> 
          <a href="#/recipes/<%= recipe.id %>" class="thumbnail recipe">   
-         
-          <img class="thumbnail_img" src="<%= image_url %>" alt="">
-         
-         <div class="caption dotdotdot">
-         <h4><%= recipe.escape("name") %></h4>
-         <h5>From <%= recipe.escape("source_name") %></h5>      
-          </div>
-          
-         <% if (version == "collection") { %>
-        <button class="btn-danger btn-mini delete" id="recipe-delete-button" data-id="<%=recipe.escape("id")%>">
-        <i class="icon-trash icon-white"></i></button>
-         <% }; %>
-         
-         <br>
-       
-         <div class="caption drag" data-id="<%=recipe.escape("id")%>">&#8853;</div>
-       </a>
-        
+           <img class="thumbnail_img" src="<%= image_url %>" alt="">
+   
+           <div class="caption dotdotdot">
+             <h4><%= recipe.escape("name") %></h4>
+             <h5>From <%= recipe.escape("source_name") %></h5>      
+           </div>
+    
+           <% if (version == "collection") { %>
+             <button class="btn-danger btn-mini delete" id="recipe-delete-button" data-id="<%=recipe.escape("id")%>">
+             <i class="icon-trash icon-white"></i></button>
+           <% }; %>
+   
+           <br>
+           <% if (typeof fodderApp.currentUser.id != "undefined" ) { %>
+             <div class="caption drag" data-id="<%=recipe.escape("id")%>">&#8853;</div>
+           <% } %>
+         </a>
        </li>
-     <% if (count % 4 == 0) { %>
-       </div>
-     <% } %>
-     <% count++ %>
+       <% if (count % 4 == 0) { %>
+         </div>
+       <% } %>
+       <% count++ %>
     <% }); %>
-</ul>
-	
+  </ul>
 </div>
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -1,21 +1,28 @@
-
 <a class="brand" href="/#">Fodderly</a>
 <div class="nav-collapse collapse">
- <% if (typeof fodderApp.currentUser.id != "undefined") {%>
+  <% if (typeof fodderApp.currentUser.id != "undefined") {%>
+    
+    <button class="btn pull-right" id="session-destroy-button" rel="nofollow">Sign Out</button>
+    <p class="navbar-text pull-right">Signed in as <%= fodderApp.currentUser.get("username") %><span class="icon-bar"></span></p>
+    
+  <% } else {%> 
+    
+    <a href="/users/new" class="btn btn-success pull-right" data-method="get">Sign Up</a>
+    <span class="icon-bar pull-right"></span>
 
-<button class="btn pull-right" id="session-destroy-button" rel="nofollow">Sign Out</button>
- <p class="navbar-text pull-right">Signed in as <%= fodderApp.currentUser.get("username") %><span class="icon-bar"></span></p>
-
- <% } else {%>
- 
-<a href="/users/new" class="btn btn-success pull-right" data-method="get">Sign Up</a>
- <span class="icon-bar pull-right"></span>
- <form class="navbar-form pull-right">
-   <input class="span2" type="text" placeholder="Username" name="user[username]">
-   <input class="span2" type="password" placeholder="Password" name='user[password]'>
-   <button type="submit" class="btn" id="session-create-button">Sign in</button>              
- </form>
- <span class="icon-bar"></span>
- <p class="navbar-text pull-right wrong" id="wrong-credentials"><p>
-<% } %>
+    <form class="navbar-form pull-right">
+      <input type="hidden" name="user[username]" value="Guest">
+      <input type="hidden" name="user[password]" value="ilovecats">
+      <button type="submit" class="btn" id="session-create-button">Sign in as Guest</button>           
+    </form>  
+    <span class="icon-bar pull-right"></span>
+    <form class="navbar-form pull-right">
+      <input class="span2" type="text" placeholder="Username" name="user[username]">
+      <input class="span2" type="password" placeholder="Password" name='user[password]'>
+      <button type="submit" class="btn" id="session-create-button">Sign in</button>              
+    </form>
+    <span class="icon-bar"></span>
+    <p class="navbar-text pull-right wrong" id="wrong-credentials"><p>
+         
+   <% } %>
 </div><!--/.nav-collapse -->

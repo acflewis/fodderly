@@ -1,6 +1,4 @@
-fodderApp.Models.Collection = Backbone.Model.extend({
-    // urlRoot: "/collections",
-    
+fodderApp.Models.Collection = Backbone.Model.extend({  
     urlRoot: function () {
         return "/users/" + fodderApp.currentUser.escape("id") + "/collections";
     },
