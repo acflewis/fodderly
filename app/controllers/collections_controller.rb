@@ -1,7 +1,6 @@
 class CollectionsController < ApplicationController
   
   def new
-    puts "Hello from new collection, current user is #{current_user}"
     @collection = Collection.new
   end
   
@@ -9,7 +8,6 @@ class CollectionsController < ApplicationController
     @collection = Collection.new
     @collection.name = params[:collection][:name]
     @collection.user_id = params[:user_id]
-     # @collection.user_id = current_user.id
     if @collection.save!
       render :json => @collection
     else
@@ -43,7 +41,6 @@ class CollectionsController < ApplicationController
   end
   
   def index
-    # render :json => current_user.collections
     render :json => Collection.all
   end
   

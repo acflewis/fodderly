@@ -2,7 +2,7 @@ fodderApp.Views.RecipesIndex = Backbone.View.extend({
   template: JST['recipes/index'],
   
   initialize: function (options) {
-    this.listenTo(fodderApp.currentUser, "all", this.render);
+    this.listenTo(fodderApp.currentUser, "change", this.render);
     this.title = options.title;
     this.version = options.version; 
   },

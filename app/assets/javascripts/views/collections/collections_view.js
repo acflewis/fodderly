@@ -4,7 +4,6 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 	initialize: function (options) {
 		this.listenTo(this.model, "all", this.render);
     this.listenTo(this.model.collection_recipes(), "all", this.render);
-    
 	},
   
   events: {
@@ -17,11 +16,6 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
     var userCollection = this.model;
 		var recipeId = $(event.currentTarget).attr("data-id");
 
-    // userCollection = this.model;
-    // var recipesJSON = userCollection.get("recipes") 
-    // var recipes = new fodderApp.Collections.Recipes(recipesJSON);
-    // recipes.get(recipeId)
-    
     $.ajax ({
       url: "/users/" + userCollection.get("user_id") + "/collections/" + userCollection.get("id") + "/recipes/" + recipeId + "/collection_recipe",
       type: "DELETE",
@@ -32,7 +26,6 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
 	},
  
   collectionExportList: function (event) {
-    console.log("exporting...")
     event.preventDefault();
     $(".list-modal-body").empty();
     $recipeDiv = $("<div>");
@@ -41,7 +34,6 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
     userCollectionRecipes.forEach ( function (recipe) { 
       var name = $("<h3>");
       name.html(recipe.escape("name"))
-      console.log(name)
       $recipeDiv.append(name);
       var $ul = $("<ul>");
       ingredients = fodderApp.recipes.at(recipe.escape("id")).get("ingredients");
@@ -55,7 +47,6 @@ fodderApp.Views.CollectionShow = Backbone.View.extend({
     } )
     $(".list-modal-body").html($recipeDiv);
     $('#myModal').modal('show');
-
     
   },
 	
