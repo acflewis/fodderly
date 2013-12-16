@@ -2,9 +2,11 @@ fodderApp.Views.UserShow = Backbone.View.extend({
 	template: JST["users/show"],
 	
   initialize: function (options) {  
-    this.listenTo(fodderApp.currentUser, "all", this.render);
+    this.listenTo(fodderApp.currentUser, "change", this.render);
      if (typeof fodderApp.currentUser.id != "undefined" ) {
-      this.listenTo(fodderApp.currentUser.get("collections"), "all", this.render);
+      this.listenTo(fodderApp.currentUser.get("collections"), "add", this.render);
+      this.listenTo(fodderApp.currentUser.get("collections"), "remove", this.render);
+      this.listenTo(fodderApp.currentUser.get("collections"), "change", this.render);
     }
   },
   
@@ -54,8 +56,7 @@ fodderApp.Views.UserShow = Backbone.View.extend({
     var Name = form.collection.name;
       var userCollection = new fodderApp.Models.Collection;
       userCollection.save({name: Name} ,{
-        success: function() {
-          debugger;
+        success: function() {   
           fodderApp.currentUser.get("collections").add(userCollection)
         },
         error: function() {
@@ -64,7 +65,13 @@ fodderApp.Views.UserShow = Backbone.View.extend({
       });    
   },
 	
-	render: function () {   
+	render: function () {  
+    if (typeof fodderApp.currentUser.id != "undefined" ) {
+      this.listenTo(fodderApp.currentUser.get("collections"), "add", this.render);
+      this.listenTo(fodderApp.currentUser.get("collections"), "remove", this.render);
+      this.listenTo(fodderApp.currentUser.get("collections"), "change", this.render);
+    }
+    
     var otherCollections = new fodderApp.Collections.AllCollections;
     otherCollections.fetch();   
     if (typeof fodderApp.currentUser.id === "undefined" ) {

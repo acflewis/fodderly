@@ -18,7 +18,6 @@ fodderApp.AppRouter = Backbone.Router.extend({
     });
     userView.render();
     $('#sidebar').html(userView.$el);
-    
   },
   
   showCollectionsIndex: function (option) {
@@ -136,5 +135,5 @@ fodderApp.AppRouter = Backbone.Router.extend({
     this._prevView = newView;
     newView.render();
     this.content.html(newView.$el);
-  }    
+  }
 })
