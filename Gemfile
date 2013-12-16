@@ -39,7 +39,7 @@ gem 'bcrypt-ruby', '~> 3.0.0', :require => 'bcrypt'
 
 # To use debugger
 group :production do
-  gem 'debugger'
+  # gem 'debugger'
   gem 'binding_of_caller'
   gem 'better_errors'
 end
