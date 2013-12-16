@@ -53,7 +53,6 @@ fodderApp.Views.SessionsListen = Backbone.View.extend({
         fodderApp.currentUser.clear()    
       
         Backbone.history.navigate('selection/all', {trigger: true});
-        that.model.destroy()
       }
     });
   }
